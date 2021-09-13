@@ -39,6 +39,7 @@ services:
     restart: always
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=1500h"
     labels:
       container_group: monitoring
     ports:
@@ -63,7 +64,7 @@ services:
     restart: always
     labels:
       container_group: monitoring
-    volumes: 
+    volumes:
       - grafana_data:/var/lib/grafana
       - ${BASE_GRAFANA_PATH}:/etc/grafana/provisioning
     ports:
